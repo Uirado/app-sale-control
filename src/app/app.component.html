@@ -1,42 +1,67 @@
-<h1>Produtos:</h1>
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Preço</th>
-    <th>Estoque</th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let product of (products$ | async)">
-    <td>{{ product.name }}</td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.quantity }}</td>
-    <td><button (click)="removeProduct(product.id)">Remover</button></td>
-  </tr>
-</table>
-<input type="text" placeholder="Nome" [(ngModel)]="product.name">
-<input type="number" placeholder="Preço" [(ngModel)]="product.price">
-<input type="number" placeholder="Estoque" [(ngModel)]="product.quantity">
-<button type="button" (click)="addProduct()">Adicionar produto</button>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" tabindex="-1">
+          <fa-icon [icon]="icons.bars"></fa-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of menuItems">
+        {{ item.text }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<h1>Clientes:</h1>
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Telefone</th>
-    <th>Empresa</th>
-    <th>E-mail</th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let customer of (customers$ | async)">
-    <td>{{ customer.name }}</td>
-    <td>{{ customer.phone }}</td>
-    <td>{{ customer.company }}</td>
-    <td>{{ customer.email }}</td>
-    <td><button (click)="removeCustomer(customer.id)">Remover</button></td>
-  </tr>
-</table>
-<input type="text" placeholder="Nome" [(ngModel)]="customer.name">
-<input type="tel" placeholder="Telefone" [(ngModel)]="customer.phone">
-<input type="text" placeholder="Empresa" [(ngModel)]="customer.company">
-<input type="email" placeholder="E-mail" [(ngModel)]="customer.email">
-<button type="button" (click)="addCustomer()">Adicionar cliente</button>
+  <mat-sidenav-content>
+      <app-header [leftButtons]="headerLeftButtons">
+        <h1>Controle de vendas</h1>
+      </app-header>
+
+      <h1>Produtos:</h1>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let product of (products$ | async)">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+          <td><button (click)="removeProduct(product.id)">Remover</button></td>
+        </tr>
+      </table>
+      <input type="text" placeholder="Nome" [(ngModel)]="product.name">
+      <input type="number" placeholder="Preço" [(ngModel)]="product.price">
+      <input type="number" placeholder="Estoque" [(ngModel)]="product.quantity">
+      <button type="button" (click)="addProduct()">Adicionar produto</button>
+
+      <h1>Clientes:</h1>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Empresa</th>
+          <th>E-mail</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let customer of (customers$ | async)">
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.company }}</td>
+          <td>{{ customer.email }}</td>
+          <td><button (click)="removeCustomer(customer.id)">Remover</button></td>
+        </tr>
+      </table>
+      <input type="text" placeholder="Nome" [(ngModel)]="customer.name">
+      <input type="tel" placeholder="Telefone" [(ngModel)]="customer.phone">
+      <input type="text" placeholder="Empresa" [(ngModel)]="customer.company">
+      <input type="email" placeholder="E-mail" [(ngModel)]="customer.email">
+      <button type="button" (click)="addCustomer()">Adicionar cliente</button>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
